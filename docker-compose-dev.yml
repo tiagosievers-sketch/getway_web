@@ -1,0 +1,42 @@
+services:
+   php-apache-gateway:
+       build:
+           context: .
+       container_name: 2easy-ede-gateway
+       networks:
+            gateway-net:
+              aliases:
+                - gateway.test
+       hostname: 2easy-ede-gateway
+       depends_on:
+         - mysql-gateway
+       volumes:
+         - ./:/var/www/html
+       ports:
+         - '27001:80'
+       expose:
+         - 27001
+   mysql-gateway:
+       image: mysql:8.0.30
+       restart: unless-stopped
+       tty: true
+       container_name: mysql-gateway
+       networks:
+         - gateway-net
+       environment:
+           MYSQL_DATABASE: '2easy_database_gateway'
+           MYSQL_ROOT_PASSWORD: '2easy_2024'
+           SERVICE_TAGS: 'dev'
+           SERVICE_NAME: 'mysql'
+       ports:
+           - 3309:3306
+       volumes:
+          - mysql_data:/var/lib/mysql
+       expose:
+         - 3309
+volumes:
+   mysql_data:
+networks:
+  gateway-net:
+     name: gateway-net
+     driver: bridge

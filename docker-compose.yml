@@ -1,0 +1,11 @@
+services:
+  2easy-ede-gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: 2easy-ede-gateway
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - "27001:80"
+    restart: unless-stopped

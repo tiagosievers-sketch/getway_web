@@ -1,0 +1,26 @@
+openapi: 3.0.0
+info:
+  title: SAS-BACKEND
+  version: '0.1'
+paths:
+  /api/core/auth/login:
+    post:
+      description: 'Login JWT'
+      operationId: 4f776434c4f7bcc9042288fb5672c064
+      requestBody:
+        request: login
+        description: 'Login Form Request Body'
+        required: true
+        content:
+          application/json:
+            schema:
+              discriminator: login
+            examples:
+              loginComCpf:
+                summary: 'Login com CPF'
+                value:
+                  login: '12345678910'
+                  password: senha
+      responses:
+        '200':
+          description: 'Login bem sucedido'

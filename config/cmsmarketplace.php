@@ -1,0 +1,6 @@
+<?php
+
+return [
+    'CMS_MARKETPLACE_TOKEN' => env('CMS_MARKETPLACE_TOKEN'),
+    'CMS_MARKETPLACE_BASE_URL' => env('CMS_MARKETPLACE_BASE_URL')
+];
